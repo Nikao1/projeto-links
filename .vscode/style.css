@@ -6,7 +6,7 @@
 
 :root {
   --text-color: white;
-  --bg-url: url(assets/bg-mobile.jpg);
+  --bg-url: url(./assets/bg-mobile.jpg);
   --stroke-color: rgba(255, 255, 255, 0.5);
   --surface-color: rgba(255, 255, 255, 0.05);
   --surface-color-hover: rgba(0, 0, 0, 0.02);
@@ -25,16 +25,8 @@
 }
 
 body {
-  /*
-  background-image: url(assets/bg-mobile.jpg);
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: cover;
-  */
-
-  /*background: color image repeat position/size*/
-  background: var(--bg-url) no-repeat top center / cover;
-  height: 100vh; /* medida que permite que todo conteúdo seja visível de acordo com as dimensoes do dispositivo */
+  background: var(--bg-url) no-repeat top center/cover;
+  height: 100vh;
 }
 
 body * {
@@ -45,12 +37,11 @@ body * {
 #container {
   width: 100%;
   max-width: 588px;
-  margin: 56px auto 0px; /*aplicando o margin em todos os lados, porém há uma regra no CSS que impede que preencha em cima e embaixo*/
-  /* assim como o background, a propriedade margin tem a possibilidade de agrupar os valores, sendo em ordem: top, right, bottom, left(sentido horário) */
+  margin: 56px auto 0px;
   padding: 0 24px;
 }
 
-/*profile*/
+/* profile */
 #profile {
   text-align: center;
   padding: 24px;
@@ -58,7 +49,6 @@ body * {
 
 #profile img {
   width: 112px;
-  margin: auto;
 }
 
 #profile p {
@@ -67,13 +57,12 @@ body * {
   margin-top: 8px;
 }
 
-/*switch*/
-#switch{
+/* switch */
+#switch {
   position: relative;
   width: 64px;
 
   margin: 4px auto;
-  
 }
 
 #switch button {
@@ -85,42 +74,48 @@ body * {
 
   position: absolute;
   top: 50%;
-  right: 0;
+  left: 0;
   z-index: 1;
   transform: translateY(-50%);
+
+  animation: slide-back 0.2s;
 }
 
-.light #switch button{
-  right: initial;
+.light #switch button {
+  animation: slide-in 0.2s forwards;
 }
 
-#switch span{
+#switch button:hover {
+  outline: 8px solid var(--highlight-color);
+}
+
+#switch span {
   display: block;
   width: 64px;
   height: 24px;
- 
-  background-color: var(--surface-color);
+  background: var(--surface-color);
   border: 1px solid var(--stroke-color);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: 9999px;
 }
 
-/* lista */
-
+/* links */
 ul {
   list-style: none;
 
   display: flex;
   flex-direction: column;
   gap: 16px;
+
   padding: 24px 0;
 }
 
-ul li {
+ul li a {
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: 16px 24px;
 
   background: var(--surface-color);
@@ -136,19 +131,19 @@ ul li {
   transition: background 0.2s;
 }
 
-/* pseudo-selector*/
-ul li:hover {
+/* pseudo-selector */
+ul li a:hover {
   background: var(--surface-color-hover);
   border: 1.5px solid var(--text-color);
-  cursor: pointer;
 }
 
-/*social links */
+/* social links */
 #social-links {
   display: flex;
   justify-content: center;
+
   padding: 24px 0;
-  gap: 42px;
+
   font-size: 24px;
 }
 
@@ -156,7 +151,9 @@ ul li:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 16px;
 
+  transition: background 0.2s;
   border-radius: 50%;
 }
 
@@ -172,12 +169,30 @@ footer {
 
 /* media queries */
 @media (min-width: 700px) {
-    :root{
-        --bg--url: url(./assets/bg-desktop.jpg)
-    }
+  :root {
+    --bg-url: url(./assets/bg-desktop.jpg);
+  }
 
-    .light{
-        --bg--url: url(./assets/bg-desktop-light.jpg)
+  .light {
+    --bg-url: url(./assets/bg-desktop-light.jpg);
+  }
+}
 
-    }
+/* animation */
+@keyframes slide-in {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+@keyframes slide-back {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
+  }
 }
