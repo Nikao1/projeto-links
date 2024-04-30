@@ -42,7 +42,8 @@ body * {
 }
 
 #container {
-  width: 360px;
+  width: 100%;
+  max-width: 588px;
   margin: 56px auto 0px; /*aplicando o margin em todos os lados, porém há uma regra no CSS que impede que preencha em cima e embaixo*/
   /* assim como o background, a propriedade margin tem a possibilidade de agrupar os valores, sendo em ordem: top, right, bottom, left(sentido horário) */
   padding: 0 24px;
